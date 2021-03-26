@@ -1,9 +1,13 @@
 import sys
+import subprocess
 import requests
 import json
 
 def say_hello():
     print("Hello, I am Henry. I can try to help you!")
+    branches_list = subprocess.run(["git", "branch"], stdout = subprocess.PIPE, text = True)
+    for index, branch in enumerate(branches_list.stdout.strip().split("\n")):
+        print(index, " - ", branch)
 
 def get_github_credentials():
     credentials = {}
